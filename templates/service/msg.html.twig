@@ -1,0 +1,16 @@
+<h1> bonjouuuuuuuur {{n | lower}} </h1>
+
+
+{% set x = 6 %}
+
+{{x}}
+{{dump(a)}} 
+ {% for t in a %}
+ {{t.username}}
+ <img src="{{t.picture}}"  alt="test"> 
+ {% if(t.nb_books>0)%}
+    <input type="submit" value="buy">
+ {% endif %}
+ {% endfor %}
+
+ {{a[0].username}}
