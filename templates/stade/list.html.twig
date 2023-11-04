@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+<h3> LA LISTES DES Stades</h3>
+<table border="1">
+<tr>
+<td>refStade </td>
+<td> Name</td>
+<td> CreatedAT</td>
+<td> Action</td>
+</tr>
+{% for stade in response %}
+<tr>
+<td> {{stade.refStade}} </td>
+<td> {{stade.name}} </td>
+<td> {{stade.createdAt | date('y:m:d')}} </td>
+</tr>
+{% endfor %}
+</table>

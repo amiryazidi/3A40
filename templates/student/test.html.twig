@@ -1,9 +1,29 @@
 
+<link rel="stylesheet" href="{{asset('css/styles.css')}}">
+
+<table border="1"> 
+
+    <tr>
+        <td> ID </td>
+        <td> NAME </td>
+        <td> EMAIL </td>
+        <td> AGE </td>
+        <td> CLASSROOM </td>
+        <td> ACTION </td>
+    </tr>
 
 {% for i in response %}
+<tr>
+    <td> {{i.id}} </td>
+    <td> {{i.name}} </td>
+     <td> {{i.email}} </td>
+    <td> {{i.age}} </td>
+    <td> {{i.classroom}} </td>
+    <td> 
+        <a href={{path('update', {'id': i.id})}}> update </a>
+        <a href={{path('remove', {'id': i.id})}}> remove </a>
+        <td>
 
-    {{i.name}}
-    {{i.email}}
-    {{i.age}}
+</tr>
 
 {% endfor%}

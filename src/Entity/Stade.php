@@ -2,18 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\ClassroomRepository;
+use App\Repository\StadeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ClassroomRepository::class)]
-class Classroom
+#[ORM\Entity(repositoryClass: StadeRepository::class)]
+class Stade
 {
+
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column]
-    private ?int $ref = null;
+    private ?int $refStade = null;
 
     #[ORM\Column(length: 255)]
     private ?string $name = null;
@@ -21,17 +21,26 @@ class Classroom
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'classroom', targetEntity: Student::class)]
-    private Collection $students;
+    #[ORM\OneToMany(mappedBy: 'stade', targetEntity: Player::class)]
+    private Collection $players;
 
     public function __construct()
     {
-        $this->students = new ArrayCollection();
+        $this->players = new ArrayCollection();
     }
 
-    public function getRef(): ?int
+
+
+    public function getRefStade(): ?int
     {
-        return $this->ref;
+        return $this->refStade;
+    }
+
+    public function setRefStade(int $refStade): static
+    {
+        $this->refStade = $refStade;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -59,36 +68,32 @@ class Classroom
     }
 
     /**
-     * @return Collection<int, Student>
+     * @return Collection<int, Player>
      */
-    public function getStudents(): Collection
+    public function getPlayers(): Collection
     {
-        return $this->students;
+        return $this->players;
     }
 
-    public function addStudent(Student $student): static
+    public function addPlayer(Player $player): static
     {
-        if (!$this->students->contains($student)) {
-            $this->students->add($student);
-            $student->setClassroom($this);
+        if (!$this->players->contains($player)) {
+            $this->players->add($player);
+            $player->setStade($this);
         }
 
         return $this;
     }
 
-    public function removeStudent(Student $student): static
+    public function removePlayer(Player $player): static
     {
-        if ($this->students->removeElement($student)) {
+        if ($this->players->removeElement($player)) {
             // set the owning side to null (unless already changed)
-            if ($student->getClassroom() === $this) {
-                $student->setClassroom(null);
+            if ($player->getStade() === $this) {
+                $player->setStade(null);
             }
         }
 
         return $this;
-    }
-    public function __toString()
-    {
-        return $this->name;
     }
 }

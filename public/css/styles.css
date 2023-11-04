@@ -1,0 +1,42 @@
+/* Style pour le titre h3 */
+
+h3 {
+    font-size: 24px;
+    color: #333;
+}
+
+
+/* Style pour la table */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ccc;
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: left;
+}
+
+
+/* Style pour les boutons */
+
+a {
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+a:hover {
+    background-color: #0056b3;
+}
